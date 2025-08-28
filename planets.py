@@ -2,6 +2,8 @@ from skyfield.api import load
 import matplotlib.pyplot as plt
 import numpy as np
 
+import sys
+
 # Load planetary data and timescale
 planets = load('de421.bsp')
 ts = load.timescale()
@@ -36,6 +38,9 @@ for i in range(len(x)):
     r = np.sqrt(x[i]**2 + y[i]**2)
     orbit = plt.Circle((0, 0), r, color='lightgray', fill=False, linestyle=':', linewidth=0.5)
     ax.add_artist(orbit)
+
+if '--black' in sys.argv:
+    ax.set_facecolor('black')
 
 ax.set_aspect('equal')
 ax.set_title('Current Positions of Planets (Ecliptic Plane, to scale)')
